@@ -61,12 +61,130 @@
             display: flex;
             flex-direction: column;
             gap: 4px;
+            z-index: 102;
         }
 
         .menu-btn span {
             width: 25px;
             height: 2px;
             background: #fff;
+            transition: all 0.3s;
+        }
+
+        .menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: #000;
+            border-left: 1px solid #222;
+            z-index: 101;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            padding: 80px 30px 30px;
+        }
+
+        .side-menu.active {
+            right: 0;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .menu-section {
+            margin-bottom: 40px;
+        }
+
+        .menu-section h3 {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .menu-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: color 0.3s;
+            display: block;
+        }
+
+        .menu-link:hover {
+            color: #888;
+        }
+
+        .merch-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .merch-item {
+            aspect-ratio: 1;
+            background: #111;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .merch-item:hover {
+            transform: scale(1.05);
+        }
+
+        .merch-item-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .merch-item-name {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
         .nav-section {
@@ -455,13 +573,114 @@
     <header>
         <div class="logo">TJ TOO FLYY</div>
         <div class="nav-icons">
-            <div class="menu-btn">
+            <div class="menu-btn" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
     </header>
+
+    <div class="menu-overlay" onclick="toggleMenu()"></div>
+    <div class="side-menu">
+        <div class="menu-section">
+            <h3>NAVIGATION</h3>
+            <div class="menu-links">
+                <a href="#music" class="menu-link" onclick="toggleMenu()">Music & Videos</a>
+                <a href="#about" class="menu-link" onclick="toggleMenu()">About</a>
+                <a href="#tour" class="menu-link" onclick="toggleMenu()">Tour Dates</a>
+                <a href="#contact" class="menu-link" onclick="toggleMenu()">Contact</a>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h3>MERCHANDISE & CLOTHING</h3>
+            <div class="merch-grid">
+                <div class="merch-item">
+                    <div class="merch-item-icon">👕</div>
+                    <div class="merch-item-name">T-SHIRTS</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">🧢</div>
+                    <div class="merch-item-name">HATS</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">🏷️</div>
+                    <div class="merch-item-name">HOODIES</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">👖</div>
+                    <div class="merch-item-name">SWEATPANTS</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">🧥</div>
+                    <div class="merch-item-name">JACKETS</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">👟</div>
+                    <div class="merch-item-name">SNEAKERS</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">🧦</div>
+                    <div class="merch-item-name">SOCKS</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">🎒</div>
+                    <div class="merch-item-name">BACKPACKS</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">🎧</div>
+                    <div class="merch-item-name">HEADPHONES</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">⌚</div>
+                    <div class="merch-item-name">WATCHES</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">💿</div>
+                    <div class="merch-item-name">VINYL</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">📀</div>
+                    <div class="merch-item-name">CDS</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">📱</div>
+                    <div class="merch-item-name">PHONE CASES</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">🖼️</div>
+                    <div class="merch-item-name">POSTERS</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">🧃</div>
+                    <div class="merch-item-name">WATER BOTTLES</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">🔑</div>
+                    <div class="merch-item-name">KEYCHAINS</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">🎚️</div>
+                    <div class="merch-item-name">STICKERS</div>
+                </div>
+                <div class="merch-item">
+                    <div class="merch-item-icon">🖊️</div>
+                    <div class="merch-item-name">SIGNED ITEMS</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h3>CONNECT</h3>
+            <div class="menu-links">
+                <a href="https://instagram.com/tjtooflyy0x0" target="_blank" class="menu-link">Instagram</a>
+                <a href="https://tiktok.com/@tjtooflyy0x0" target="_blank" class="menu-link">TikTok</a>
+                <a href="https://x.com/tjtooflyy0x0" target="_blank" class="menu-link">X</a>
+                <a href="https://youtube.com/@tjtooflyy0x0" target="_blank" class="menu-link">YouTube</a>
+            </div>
+        </div>
+    </div>
 
     <div class="nav-section">
         <button onclick="scrollToSection('music')">MUSIC</button>
@@ -570,6 +789,16 @@
     </footer>
 
     <script>
+        function toggleMenu() {
+            const menuBtn = document.querySelector('.menu-btn');
+            const sideMenu = document.querySelector('.side-menu');
+            const overlay = document.querySelector('.menu-overlay');
+            
+            menuBtn.classList.toggle('active');
+            sideMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
         function scrollToSection(id) {
             const element = document.getElementById(id);
             if (element) {
